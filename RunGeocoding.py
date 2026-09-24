@@ -25,7 +25,7 @@ gis = GIS()
 # Ensure selected column is address-like
 def not_address_like(series, address_pattern):
     """Check if the column values are address-like based on a regex pattern."""
-    address_like = series.str.contains(address_pattern, na=False)
+    address_like = series.astype("string").str.contains(address_pattern, na=False)
     return address_like.sum() / len(series) < 0.5
 
 # Geocode function
